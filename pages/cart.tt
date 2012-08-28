@@ -1,0 +1,63 @@
+[% page_title = 'Shopping Cart' | loc %]
+<div id="cart" class="page">
+    <h1 class="topic1"><span>[% page_title %]</span></h1>
+      <div class="padding">
+        [%- if !cart.line_items.first %]
+          [% 'your shopping cart is empty' | loc %]
+        [%- else %]
+        <script type="text/javascript">
+        function remove_line_item(id) {
+          $j('#quantity_'+id).val(0);
+          $j('#cart_form').submit();
+        }
+        </script>
+    
+        <form method="post" id="cart_form" action="/cart">
+          <table class="items">
+            <tr>
+              <th class="radius_left">&nbsp;</th>
+              <th>[% 'Title' | loc %]</th>
+              <th class="r">[% 'Quantity' | loc %]</th>
+              <th class="r">[% 'Price' | loc %]</th>
+              <th class="radius_right">[% 'Remove' | loc %]</th>
+            </tr>
+            [%- foreach line_item in cart.line_items %]
+            <tr>
+              <td class="image">
+                <div style="background-image: url('[% line_item.product.featured_image.src | image_uri ('tiny') %]')"></div>
+              </td>
+              <td class="title">
+                <span class="name">[% line_item.name | link_to line_item.product.uri %]</span>
+                <p class="sku">[% line_item.sku %]</p>
+              </td>
+              <td class="quantity"><span>[% line_item.price | money_without_currency %] x <input name="quantity_[% line_item.variant.id %]" id="quantity_[% line_item.variant.id %]" type="text" class="text" value="[% line_item.quantity %]" size="3" maxlength="3" /></span></td>
+              <td class="line_price"><span>[% line_item.line_price | money %]</span></td>
+              <td class="remove"><span><img src="[% 'images/icons/trash.gif' | global_asset_uri %]" onclick="remove_line_item([% line_item.variant.id %]); return false;" title="[% 'Remove' | loc %]" alt="[% 'Remove' | loc %]" style="cursor: pointer" /></span></td>
+            </tr>
+            [%- end %]
+          </table>
+    
+          <div class="summary message_wrapper">
+            <div class="message">
+              <div class="fl">
+                <input type="submit" value="&nbsp;" title="[% 'Update Cart' | loc %]" name="update" class="buttons update_cart" />
+              </div>
+              <div class="fr">
+                [% 'Subtotal' | loc %]: <span class="total_price">[% cart.total_price | money_with_native_currency %]</span>
+              </div>
+              <div class="clear"></div>
+            </div>
+          </div>
+    
+          <div class="fl">
+            &larr; <a href="[% uri_for('/collection/all') %]">[% 'Continue shopping' | loc %]</a>
+          </div>
+          <div class="fr">
+            <input type="submit" value="&nbsp;" title="Checkout !" name="checkout" class="buttons checkout" />
+          </div>
+          <div class="clear"></div>
+    
+        </form>
+        [% end %]
+      </div>
+</div>

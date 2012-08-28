@@ -1,0 +1,71 @@
+<div id="discussion" class="page">
+    <h1 class="topic1"><span>[% discussion.name | html %]</span></h1>
+    <div class="breadcrumb">[% 'discussions' | loc | link_to ('/discussion/all') %] &raquo; [% discussion.name | html | link_to discussion.uri %]</div>   
+    <div class="padding">
+      
+      [% threads = discussion.threads (limit = 20) %]
+      [% unless threads.size %]
+      <p>[% 'No discussions started.' | loc %]</p>
+      [% else %]
+      <table class="listing">
+        <tr>
+          <th class="badge radius_left">&nbsp;</th>
+          <th class="title">[% 'TOPICS' | loc %]</th>
+          <th class="count">[% 'REPLIES' | loc %]</th>
+          <th class="date radius_right">[% 'LAST POST' | loc %]</th>
+        </tr>
+        [% foreach thread in threads %]
+        <tr class="[% loop.parity %][% ' hidden' if thread.closed_at %]" onmouseover="this.className='hover'" onmouseout="this.className=''">
+          <td class="status">
+            [% if thread.featured %]<span class="featured" title="[% 'Pinned' | loc %]"></span>[% end %]
+            [% if thread.closed_at %]<span class="closed" title="[% 'Closed' | loc %]"></span>[% end %]
+          </td>
+          <td>
+            [% thread.subject | html | link_to thread.uri %]
+            <p class="hint">[% 'Started by' | loc %] [% thread.author %]</p>
+          </td>
+          <td>[% thread.comment_count || 0 %]</td>
+          <td>[% thread.updated_at | date ('%c') %]</td>
+        </tr>
+        [% end %]
+      </table>
+      [% end %]
+      [% pageset | pagination if pageset && pageset.last_page > 1 %]
+    </div>
+  
+    <div id="create_thread" class="comment_form message_wrapper">
+      <div class="message">
+        <h3 class="topic3">[% 'Start a discussion' | loc %]</h3>
+        [% wrapper form %]
+        <fieldset>
+          <dl class="double">
+            <dt>[% 'Subject' | loc %]</dt>
+            <dd class="[% 'error' if form.error('thread_subject') %]">
+              <input type="text" class="text" name="thread_subject" maxlength="50" />
+            </dd>
+          </dl>
+          <dl class="single">
+            <dt>[% 'Category' | loc %]</dt>
+            <dd class="[% 'error' if form.error('thread_discussion') %]">
+              <select name="thread_discussion" class="select">
+                [%- foreach shop_discussion in shop.discussions %]
+                <option value="[% shop_discussion.slug %]">[% shop_discussion.name %]</option>
+                [%- end %]
+              </select>
+            </dd>
+          </dl>        
+          <dl class="cb quadruple">
+            <dt>[% 'Description' | loc %]</dt>
+            <dd class="[% 'error' if form.error('thread_body') %]">
+              <textarea name="thread_body" id="thread_body" cols="40" rows="6" class="textarea markdown"></textarea>
+            </dd>
+          </dl>
+        </fieldset>
+        <div class="cb submit">
+          <input class="button small_curved" type="submit" name="submit" value="[% 'Create' | loc %]" />
+        </div>
+        [% include markdown %]
+        [% end %]
+      </div>
+    </div>
+</div>

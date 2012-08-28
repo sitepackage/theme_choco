@@ -1,0 +1,20 @@
+<div style="float: left; margin: 0 2px 0 0">
+  <a name="fb_share" type="button_count" share_url="[% req.uri %]" href="http://www.facebook.com/sharer.php"></a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+</div>
+<div style="float: left; margin: 0 2px">
+  <iframe src="http://www.facebook.com/plugins/like.php?href=[% req.uri | uri %]&amp;layout=button_count&amp;show_faces=false&amp;width=110&amp;action=like&amp;colorscheme=light&amp;height=20" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:110px; height:20px; padding: 0; margin: 0" allowTransparency="true"></iframe>
+</div>
+<div style="float: left; margin: 0 2px">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+</div>
+<div style="float: left; margin: 0 2px">
+  <div class="g-plusone" data-size="medium"></div>
+  <script type="text/javascript">
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+  </script>
+</div>
+<br style="clear: both" />

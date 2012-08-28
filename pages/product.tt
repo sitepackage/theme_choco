@@ -1,0 +1,95 @@
+<div id="product" class="page">
+    <div class="padding">
+      <div class="fancybox featured_image">
+        
+        <a rel="product_images" href="[% product.featured_image.src | image_uri ('original') %]">
+          <span style="background-image: url('[% product.featured_image.src | image_uri ('large') %]')"></span>
+        </a>
+        
+        [%- if product.images.first %]
+        <div class="cb fancybox extra_images">
+          [%- if product.images.first %]
+          <ul>
+            [%- foreach image in product.images %]
+            <li>
+              <a rel="product_images" href="[% image.src | image_uri ('original') %]">
+                <span style="background-image: url('[% image.src | image_uri ('tiny') %]')"></span>
+              </a>
+            </li>
+            [%- end %]
+          </ul>
+          [%- end %]
+        </div>
+        [%- end %]        
+        
+      </div>   
+    <h1 class="topic1"><span>[% product.name | html | link_to product.uri %]</span></h1>     
+    <div class="details">
+      <form action="[% '/cart/add' %]" method="post">
+        <ul>
+          <li>
+            [% product.options.join(' / ') %]
+            [%- foreach variant in product.variants %]
+            <div>
+              <label>
+                <input type="radio" name="variant" value="[% variant.id %]" [% 'checked="checked"' if loop.count == 1 %] [% 'disabled="disabled"' unless variant.available %] />
+                [% variant.name | html %]
+                [%- if variant.price != "0.00" %]                   
+                  [%- if variant.compare_at_price %]
+                    <span class="compare_at_price">[% variant.compare_at_price | money %]</span>
+                    [%- end %]
+                    <span class="price">- [% variant.price | money %]</span>
+                [%- end %]                  
+                [%- unless variant.available %]
+                <strong style="text-transform: uppercase">[% 'Sold Out' | loc %]</strong>
+                [%- end %]
+              </label>
+            </div>
+            [%- end %]
+          </li>
+          [%- if  !settings.ecommerce_enabled %]             
+          [%- if product.available %]
+          <li>
+            <div class="quantity">[% 'How many' | loc %]? <input type="text" name="quantity" class="text" size="3" maxlength="3" value="1" /></div>
+            <div class="buy"><input type="submit" class="buttons add_to_cart" value="" title="[% 'Add to Cart' | loc %]" /></div>
+            <br class="clear" />
+          </li>
+          [%- end %]
+          [%- end %]          
+        </ul>
+      </form>
+      <p>
+        [% product.type | link_to_type_html %] [% 'By' | loc %] [% product.vendor | link_to_vendor_html %]
+      </p>
+    </div>
+    
+    <div class="clear"></div>
+    
+    <div class="cb description">
+      [% product.content if product.content %]
+    </div>
+    
+    [%- if settings.product_images_enabled %]
+      [%- if product.images.first %]
+      <div class="cb all">
+        [%- if product.images.first %]
+        <ul>
+          [%- foreach image in product.images %]
+  
+          <li>[% image.src | image_uri | image_tag %]</li>	
+          [%- end %]
+        </ul>
+        [%- end %]
+      </div>
+      [%- end %]         
+    [%- end %]    
+
+    [%- if settings.social_enabled %]
+    <div class="social">
+    [% include 'social.tt' %]
+    </div>
+    [%- end %]
+      
+  
+    </div>
+</div>

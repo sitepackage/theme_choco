@@ -1,0 +1,66 @@
+<div id="discussion">
+    <div class="page">
+    <h1 class="topic1"><span>[% discussion.name | html %]</span></h1>
+    <div class="breadcrumb">[% 'discussions' | loc | link_to ('/discussion/all') %] &raquo; [% discussion.name | html | link_to discussion.uri %] &raquo; [% thread.subject | html | link_to thread.uri %]</div>    
+    <div class="padding">
+      <h2 > [% thread.subject | html %]</h2>
+      <div class="original_post">
+        <div class="fl">[% thread.author %] | [% thread.created_at | date('%c') %]</div>
+        <div class="fr">[% thread.email | gravatar (size = 48) | image_tag %]</div>
+        <div class="cb body">[% thread.content %]</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="comments">
+    <div class="padding">
+      <h3 class="topic3">[% thread.comment_count || 0 %] [% thread.comment_count || 0 | pluralize ('comment', 'comments') | loc %]</h3>
+      [% set comments = thread.comments (limit = 10) %]
+      [% if comments.size %]
+      <ul>
+        [% foreach comment in comments %]
+        <li id="comment_[% comment.id %]">
+          <div class="avatar">[% comment.email | gravatar | image_tag %]</div>
+          <div class="meta">
+            <span>[% comment.author %] | [% comment.created_at | date ('%c') %]</span>
+            <div class="body">[% comment.content %]</div>
+          </div>
+          <div class="clear"></div>
+        </li>
+        [% end %]
+      </ul>
+
+      [% pageset | pagination if pageset && pageset.last_page > 1 %]
+      [% end %]
+    </div>
+  </div>
+
+  <div id="create_comment" class="comment_form message_wrapper">
+    <div class="message">
+      [% if thread.closed_at %]
+      <p>
+        [% 'The post is resolved, comments are currently closed.' | loc %]<br />
+        [% new_post = 'start a new one' | loc | link_to discussion.uri _ '#create_thread' %]
+        [% 'You can [_1].' | loc (new_post) %]
+      </p>
+      [% else %]
+      [% wrapper form %]
+      <fieldset>
+        <dl class="quadruple">
+          <dt>[% 'Reply to this discussion' | loc %]</dt>
+          <dd class="[% 'error' if form.error('comment_body') %]">
+            <textarea name="comment_body" id="comment_body" cols="40" rows="6" class="textarea markdown"></textarea>
+          </dd>
+        </dl>
+      </fieldset>
+      <div class="cb submit">
+        <input class="button" type="submit" name="submit" value="[% 'Post comment' | loc %]" />
+        <input type="hidden" name="last_page" value="[% pageset.last_page %]" />
+      </div>
+      [% include markdown %]
+      [% end %]
+      [% end %]
+    </div>
+  </div>
+</div>

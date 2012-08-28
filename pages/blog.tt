@@ -1,0 +1,33 @@
+[% articles = blog.articles(limit = 10) %]
+<div id="blog" class="page">
+    <h1 class="topic1"><span>[% blog.name %]</span></h1>
+      <div class="padding">
+        [%- if !articles.first %]
+        <p>[% 'Blog is empty' | loc %]</p>
+        [%- else%]
+        <ul>
+          [%- foreach article in articles %]
+          <li>
+            <div class="image">
+              <span class="featured_image" style="background-image: url('[% article.featured_image.src | image_uri ('thumb') %]')"></span>
+            </div>
+            <div class="details">
+              <h2 class="topic2">[% article.name | html | link_to article.uri %]</h2>
+              <div class="author">[% article.author %], [% article.published_at | date ('%x') %]</div>
+              <div class="excerpt">
+                [%- if article.excerpt %]
+                [% article.excerpt | strip_html %]
+                [%- else %]
+                [% article.content | strip_html | truncatewords (108, '&hellip;' ) %]
+                [%- end %]
+                [% 'See more' | link_to (article.uri) %]
+              </div>
+            </div>
+            <div class="clear"></div>
+          </li>
+          [%- end %]
+        </ul>
+        [%- end %]
+        [% pageset | pagination if pageset && pageset.last_page > 1 %]
+      </div>
+</div>

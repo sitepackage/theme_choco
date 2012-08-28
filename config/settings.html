@@ -1,0 +1,285 @@
+<fieldset>
+  <legend>รูปแบบธีม</legend>
+  <table>
+    <tr>
+      <th><label for="style_name">โทนสี</label></th>
+      <td>
+        <select name="style_name" id="style_name">
+          <option value="style1">Vanilla Choco</option>
+          <option value="style2">Blue Choco</option>
+          <option value="style3">Dark Choco</option>
+          <option value="style4">Milk Choco</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="body_bg_uri">ภาพพื้นหลัง URI</label></th>
+      <td>
+        <input class="image_uri" type="text" id="body_bg_uri" name="body_bg_uri" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="body_bg_repeat">วนซ้ำภาพพื้นหลัง</label></th>
+      <td>
+        <select name="body_bg_repeat" id="body_bg_repeat">
+          <option value="">ไม่วนซ้ำ</option>
+          <option value="no-repeat fixed">อยู่กับที่</option>              
+          <option value="repeat">วนซ้ำ</option>
+          <option value="repeat-x">วนซ้ำ แนวนอน</option>
+          <option value="repeat-y">วนซ้ำ แนวตั้ง</option>        
+        </select>
+      </td>
+    </tr>               
+  </table>
+</fieldset>
+<fieldset>
+  <legend>หน้าแรก</legend>
+  <table>
+    <tr>
+      <th><label for="welcome_message">เลือกหน้าสำหรับข้อความต้อนรับ</label></th>
+      <td>
+        <select class="page" name="welcome_message" id="welcome_message" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="frontpage_collection">คอลเลคชันสินค้า</label></th>
+      <td>
+        <select class="collection" name="frontpage_collection" id="frontpage_collection" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="frontpage_product_limit">จำนวนสินค้า</label></th>
+      <td>
+        <select name="frontpage_product_limit" id="frontpage_product_limit">
+          <option value="4">4</option>
+          <option value="8">8</option>
+          <option value="16">16</option>
+          <option value="24">24</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="frontpage_discussion">เลือกเว็บบอร์ด</th>
+      <td>
+        <select class="discussion" name="frontpage_discussion" id="frontpage_discussion" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="frontpage_discussion_limit">จำนวนการสนทนา</th>
+      <td>
+        <select name="frontpage_discussion_limit" id="frontpage_discussion_limit">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="frontpage_blog">เลือกบล็อก</th>
+      <td>
+        <select class="blog" name="frontpage_blog" id="frontpage_blog" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="frontpage_blog_limit">จำนวนการสนทนา</th>
+      <td>
+        <select name="frontpage_blog_limit" id="frontpage_blog_limit">
+          <option value="5">5</option>
+          <option value="10">10</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+</fieldset>
+<fieldset>
+  <legend>รูปภาพ</legend>
+  <table>
+    <tr>
+      <th><label for="logo_image_uri">โลโก้ URI (370x70 px.)</label></th>
+      <td>
+        <input class="image_uri" type="text" id="logo_image_uri" name="logo_image_uri" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="favicon_image_uri">Favicon URI (.png, .ico)</label></th>
+      <td>
+        <input class="image_uri" type="text" id="favicon_image_uri" name="favicon_image_uri" />
+      </td>
+    </tr>
+  </table>
+</fieldset>
+<fieldset>
+  <legend>Widgets</legend>
+  <table>
+    <tr>
+      <th><label for="form_login">ฟอร์มล็อกอิน</label></th>
+      <td>
+        <select name="form_login" id="form_login">
+          <option value="">เปิดใช้งาน</option>
+          <option value="1">ปิดใช้งาน</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="ecommerce_enabled">ระบบสั่งซื้อสินค้าออนไลน์</label></th>
+      <td>
+        <select name="ecommerce_enabled" id="ecommerce_enabled">
+          <option value="">เปิดใช้งาน</option>
+          <option value="1">ปิดใช้งาน</option>
+        </select>
+      </td>
+    </tr>    
+  <tr>
+      <th><label for="linklist_highlight">ลิงค์ลิสต์ ภาพไฮไลท์</label></th>
+      <td>
+        <select class="linklist" name="linklist_highlight" id="linklist_highlight" />
+      </td>
+    </tr>     
+   <tr>
+      <th><label for="linklist_nav2">ลิงค์ลิสต์ ด้านบน</label></th>
+      <td>
+        <select class="linklist" name="linklist_nav2" id="linklist_nav2" />
+      </td>
+    </tr>    
+    <tr>
+      <th><label for="linklist_sidebar1">ลิงค์ลิสต์ ด้านข้าง1</label></th>
+      <td>
+        <select class="linklist" name="linklist_sidebar1" id="linklist_sidebar1" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="linklist_sidebar2">ลิงค์ลิสต์ ด้านข้าง2</label></th>
+      <td>
+        <select class="linklist" name="linklist_sidebar2" id="linklist_sidebar2" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="linklist_sidebar3">ลิงค์ลิสต์ ด้านข้าง3</label></th>
+      <td>
+        <select class="linklist" name="linklist_sidebar3" id="linklist_sidebar3" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="collection_enabled">คอลเลคชันสินค้า ด้านข้าง</label></th>
+      <td>
+        <select name="collection_enabled" id="collection_enabled">
+          <option value="">เปิดใช้งาน</option>
+          <option value="1">ปิดใช้งาน</option>
+        </select>
+      </td>
+    </tr>    
+    <tr>
+      <th><label for="brand_style">ฟิลเตอร์แบรนด์สินค้า ด้านข้าง</label></th>
+      <td>
+        <select name="brand_style" id="brand_style">
+          <option value="0">ปิดใช้งาน</option>
+          <option value="1">drop-down list</option>
+          <option value="2">text link</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="type_style">ฟิลเตอร์ประเภทสินค้า ด้านข้าง</label></th>
+      <td>
+        <select name="type_style" id="type_style">
+          <option value="0">ปิดใช้งาน</option>
+          <option value="1">drop-down list</option>
+          <option value="2">text link</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="subcategory">ฟิลเตอร์สินค้า ตรงกลาง</label></th>
+      <td>
+        <select name="subcategory" id="subcategory">
+          <option value="">ปิดใช้งาน</option>          
+          <option value="1">Tag</option>
+          <option value="2">Type</option>
+          <option value="3">Brand</option>
+        </select>
+      </td>
+    </tr>    
+    <tr>
+      <th><label for="stats_enabled">สถิติและสถานะร้านค้า</label></th>
+      <td>
+        <select name="stats_enabled" id="stats_enabled">
+          <option value="">ปิดใช้งาน</option>
+          <option value="1">เปิดใช้งาน</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="product_images_enabled">แสดงรูปภาพ extra ในหน้ารายละเอียดสินค้า</label></th>
+      <td>
+        <select name="product_images_enabled" id="product_images_enabled">
+          <option value="">ปิดใช้งาน</option>
+          <option value="1">เปิดใช้งาน</option>
+        </select>
+      </td>
+    </tr>     
+  </table>
+</fieldset>
+<fieldset>
+  <legend>สังคมออนไลน์</legend>
+  <table>
+    <tr>
+      <th><label for="social_enabled">Social Share</label></th>
+      <td>
+        <select name="social_enabled" id="social_enabled">
+          <option value="">ปิดใช้งาน</option>
+          <option value="1">เปิดใช้งาน</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="facebook_uri">Facebook URI</label></th>
+      <td>
+        <input class="uri" type="text" id="facebook_uri" name="facebook_uri" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="like_box_enabled">Facebook Like Box</label></th>
+      <td>
+        <select name="like_box_enabled" id="like_box_enabled">
+          <option value="">ปิดใช้งาน</option>
+          <option value="1">เปิดใช้งาน</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="like_box_height">ความยาว Facebook Like Box</label></th>
+      <td>
+        <input class="text" type="text" id="like_box_height" name="like_box_height" value="556" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="like_box_enabled">ออพชัน Facebook Like Box</label></th>
+      <td>
+        <input type="checkbox" name="like_box_show_faces" id="like_box_show_faces" value="1" />
+        <label for="like_box_show_faces">Show Faces</label>
+        <input type="checkbox" name="like_box_show_stream" id="like_box_show_stream" value="1" />
+        <label for="like_box_show_stream">Show Stream</label>
+        <input type="checkbox" name="like_box_show_header" id="like_box_show_header" value="1" />
+        <label for="like_box_show_header">Show Header</label>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="twitter_uri">Twitter URI</label></th>
+      <td>
+        <input class="uri" type="text" id="twitter_uri" name="twitter_uri" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="youtube_uri">Youtube URI</label></th>
+      <td>
+        <input class="uri" type="text" id="youtube_uri" name="youtube_uri" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="googleplus_uri">Google Plus URI</label></th>
+      <td>
+        <input class="uri" type="text" id="googleplus_uri" name="googleplus_uri" />
+      </td>
+    </tr>
+  </table>
+</fieldset>

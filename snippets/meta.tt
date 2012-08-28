@@ -1,0 +1,22 @@
+[%- switch template.name %]
+[%- case 'index.tt' %]
+<title>[% page_title ? page_title : shop.name | html %] | [% shop.domain %]</title>
+<meta name="description" content="[% site.description %]" />
+[%- case 'product.tt' %]
+  [%- foreach variant in product.variants %]
+    [%- variant.price = variant.price | money %]
+    [%- variant.name = variant.name | html %]
+    [%- product_variants = product_variants _ ', ' _ variant.name _ ' ' _ variant.price %]
+  [%- end %]
+<title>[% page_title _ ' | ' _ product.type _ ' ' _ product.vendor | html %]</title>
+<meta name="description" content="[% product.type | html %] [% product.vendor | html %] - [% product.name | html %] - [% product_variants.remove('^(, )') %]" />
+[%- case 'collection.tt' %]
+<title>[% page_title %] | [% shop.domain if !current_type && !current_vendor %][% ' ' _ current_type | html if current_type %][% ' ' _ current_vendor | html if current_vendor %]</title>
+[%- if collection.content %]
+<meta name="description" content="[% collection.content | strip_html | collapse | truncatewords (140) %]" />
+[%- elsif collection.tags.size %]
+<meta name="description" content="[% collection.tags.join(', ') | html | truncatewords (140) %]" />
+[%- end %]
+[%- case %]
+<title>[% page_title ? page_title : shop.name | html %] | [% shop.domain %]</title>
+[%- end %]
