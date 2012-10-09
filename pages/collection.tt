@@ -2,9 +2,10 @@
 <div id="collection" class="page2">
     <h1 class="topic1">
       <span>
-        [%- collection.name || 'Products' | html %]
-        [%- ' | ' _ current_type | html if current_type %]
-        [%- ' | ' _ current_vendor | html if current_vendor %]
+         [%- collection.name || 'Products' | html %]
+         [%- ' | ' _ current_type | html if current_type %]
+         [%- ' | ' _ current_vendor | html if current_vendor %]
+         [%- ' | ' _ current_tags.join(' | ') | html if current_tags.size %]        
       </span>
     </h1>
     [%- if settings.subcategory == 1 && collection.tags.size %]
@@ -56,7 +57,11 @@
           [%- else %]
           <form action="/cart/add" method="post">
             <input type="hidden" name="variant" value="[% product.variants.first.id %]" />
-            <input type="button" class="buttons add_to_cart" onclick="submit(); return false" title="[% 'Add to Cart' | loc %]" />
+            [% if !product.available %]
+              [% '<span class="buttons view"></span>'| link_to (product.uri, product.name) %]
+            [% else%]            
+              <input type="button" class="buttons add_to_cart" onclick="submit(); return false" title="[% 'Add to Cart' | loc %]" />
+            [%- end %]            
           </form>
           [%- end %]
         </div>

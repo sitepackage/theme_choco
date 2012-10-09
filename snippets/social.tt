@@ -1,8 +1,5 @@
-<div style="float: left; margin: 0 2px 0 0">
-  <a name="fb_share" type="button_count" share_url="[% req.uri %]" href="http://www.facebook.com/sharer.php"></a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
-</div>
 <div style="float: left; margin: 0 2px">
-  <iframe src="http://www.facebook.com/plugins/like.php?href=[% req.uri | uri %]&amp;layout=button_count&amp;show_faces=false&amp;width=110&amp;action=like&amp;colorscheme=light&amp;height=20" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:110px; height:20px; padding: 0; margin: 0" allowTransparency="true"></iframe>
+  <iframe src="//www.facebook.com/plugins/like.php?href=[% req.uri | uri %]&amp;send=false&amp;layout=button_count&amp;width=110&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:110px; height:21px; padding: 0; margin: 0" allowTransparency="true"></iframe>  
 </div>
 <div style="float: left; margin: 0 2px">
   <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
@@ -17,4 +14,17 @@
     })();
   </script>
 </div>
+[%- if product.featured_image.src %]
+  [%- unless product_variants %]
+    [%- product_variants = [] %]
+    [%- foreach variant in product.variants %]
+      [%- variant.price = variant.price | money %]
+      [%- product_variants.push(variant.name _ ' ' _ variant.price) %]
+    [%- end %]
+  [%- end %]
+<div style="float: left; margin: 0 2px">
+  <a href="http://pinterest.com/pin/create/button/?url=[% req.uri | uri %]&amp;media=[% product.featured_image.src | image_uri | uri %]&amp;description=[% product.type _ ' ' | uri %][% product.vendor _ ' - ' | uri %][% product.name _ ' - ' | uri %][% product_variants.join(', ') | uri %]" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" alt="Pin It" /></a>
+</div>
+<script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
+[%- end %]
 <br style="clear: both" />

@@ -28,24 +28,41 @@
       <form action="[% '/cart/add' %]" method="post">
         <ul>
           <li>
-            [% product.options.join(' / ') %]
-            [%- foreach variant in product.variants %]
-            <div>
-              <label>
-                <input type="radio" name="variant" value="[% variant.id %]" [% 'checked="checked"' if loop.count == 1 %] [% 'disabled="disabled"' unless variant.available %] />
-                [% variant.name | html %]
-                [%- if variant.price != "0.00" %]                   
-                  [%- if variant.compare_at_price %]
-                    <span class="compare_at_price">[% variant.compare_at_price | money %]</span>
-                    [%- end %]
-                    <span class="price">- [% variant.price | money %]</span>
-                [%- end %]                  
-                [%- unless variant.available %]
-                <strong style="text-transform: uppercase">[% 'Sold Out' | loc %]</strong>
+            [%- if product.variants.size == 1 %]
+              [% product.options.join(' / ') %]            
+              [% variant = product.variants.first %]
+              [% variant.name | html %]
+              [%- if variant.price != "0.00" %]                 
+                [%- if variant.compare_at_price %]
+                <span class="compare_at_price">[% variant.compare_at_price | money %]</span>
                 [%- end %]
-              </label>
-            </div>
-            [%- end %]
+                <span class="price">- [% variant.price | money %]</span>
+              [%- end %]              
+              [%- if variant.available %]
+              <input type="hidden" name="variant" value="[% product.variants.first.id %]" />              
+              [%- else %]                            
+              <strong style="text-transform: uppercase">[% 'Sold Out' | loc %]</strong>
+              [%- end %]  
+            [%- else %]            
+              [% product.options.join(' / ') %]
+              [%- foreach variant in product.variants %]
+              <div>
+                <label>
+                  <input type="radio" name="variant" value="[% variant.id %]" [% 'checked="checked"' if loop.count == 1 %] [% 'disabled="disabled"' unless variant.available %] />
+                  [% variant.name | html %]
+                  [%- if variant.price != "0.00" %]                   
+                    [%- if variant.compare_at_price %]
+                      <span class="compare_at_price">[% variant.compare_at_price | money %]</span>
+                      [%- end %]
+                      <span class="price">- [% variant.price | money %]</span>
+                  [%- end %]                  
+                  [%- unless variant.available %]
+                  <strong style="text-transform: uppercase">[% 'Sold Out' | loc %]</strong>
+                  [%- end %]
+                </label>
+              </div>
+              [%- end %]
+            [%- end %]              
           </li>
           [%- if  !settings.ecommerce_enabled %]             
           [%- if product.available %]

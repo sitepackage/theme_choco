@@ -38,7 +38,11 @@
               [%- else %]
               <form action="/cart/add" method="post">
                 <input type="hidden" name="variant" value="[% product.variants.first.id %]" />
-                <input type="button" class="buttons add_to_cart" onclick="submit(); return false" title="[% 'Add to Cart' | loc %]" />
+                [% if !product.available %]
+                  [% '<span class="buttons view"></span>'| link_to (product.uri, product.name) %]
+                [% else%]            
+                  <input type="button" class="buttons add_to_cart" onclick="submit(); return false" title="[% 'Add to Cart' | loc %]" />
+                [%- end %]               
               </form>
               [%- end %]
             </div>
