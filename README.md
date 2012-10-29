@@ -3,6 +3,11 @@ Choco Theme
 
 Changes
 -------------
+2012-10-29
+- ตรวจสอบขนาดของ Logo
+- ปรับขนาดภาพ thumbnail ใต้รูปใหญ่หน้า product.tt
+- เพิ่ม class=last ในส่วนของ thumbnail
+
 2012-10-09
 - แก้ไขกรณีสินค้าหมดเปลี่ยนปุ่ม add to cart เป็นปุ่ม view
 - optimize code meta.tt

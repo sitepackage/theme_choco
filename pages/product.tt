@@ -3,7 +3,7 @@
       <div class="fancybox featured_image">
         
         <a rel="product_images" href="[% product.featured_image.src | image_uri ('original') %]">
-          <span style="background-image: url('[% product.featured_image.src | image_uri ('large') %]')"></span>
+          <span style="background-image: url('[% product.featured_image.src | image_uri ('medium') %]')"></span>
         </a>
         
         [%- if product.images.first %]
@@ -11,7 +11,7 @@
           [%- if product.images.first %]
           <ul>
             [%- foreach image in product.images %]
-            <li>
+            <li [% 'class="last"' if loop.count % 4 == 0 %]>
               <a rel="product_images" href="[% image.src | image_uri ('original') %]">
                 <span style="background-image: url('[% image.src | image_uri ('tiny') %]')"></span>
               </a>

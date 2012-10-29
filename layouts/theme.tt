@@ -215,17 +215,17 @@
             [%- end %]
           </div>
           [%- end %]            
-          
-          <div class="banner_wrapper">
-            [%- if linklists.sidebar.links.size %]
-            <ul>
-              [%- foreach link in linklists.sidebar.links %]
-              [%- link.name = link.name | html %]
-              <li>[% link.featured_image.src | image_uri | image_tag | link_to (link.uri, link.name, link.target) %]</li>
-              [%- end %]
-            </ul>
+          <div class="banner_wrapper">               
+            [%- if linklists.${settings.linklist_banner}.links.size %]
+            [%- links = linklists.${settings.linklist_banner}.links %]
+              [%- foreach link in links %]
+                <ul>
+                [%- link.name = link.name | html %]
+                <li>[% link.featured_image.src | image_uri | image_tag | link_to (link.uri, link.name, link.target) %]</li>
+                </ul>
+              [%- end %]               
             [%- end %]
-          </div>
+          </div>           
                       
             [%- if settings.facebook_uri && settings.like_box_enabled %]
             <div class="facebook_like_box">
